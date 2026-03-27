@@ -35,6 +35,8 @@ export async function generateStaticParams() {
   }));
 }
 
+import ProductImageViewer from "@/app/components/ProductImageViewer/ProductImageViewer";
+
 export default async function ProductPage({ params }) {
   const { id } = await params;
   const product = await getProduct(id);
@@ -88,7 +90,7 @@ export default async function ProductPage({ params }) {
           <ChevronRight size={14} />
           <Link href="/">{product.category.toUpperCase()}</Link>
           <ChevronRight size={14} />
-          <span>{product.title}</span>
+          <span className={styles.breadcrumbActive}>{product.title}</span>
         </div>
 
         <Link href="/" className={styles.backLink}>
@@ -97,17 +99,7 @@ export default async function ProductPage({ params }) {
 
         <section className={styles.productSection}>
           <div className={styles.imageCol}>
-            <div className={styles.imageBox}>
-              <Image
-                src={product.image}
-                alt={`${product.title} - Handcrafted Premium Quality | Metta Muse`}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className={styles.img}
-                style={{ objectFit: "contain" }}
-                priority
-              />
-            </div>
+            <ProductImageViewer src={product.image} alt={`${product.title} - Handcrafted Premium Quality | Metta Muse`} />
           </div>
 
           <div className={styles.infoCol}>
