@@ -19,17 +19,21 @@ export default function ProductSection({ initialProducts }) {
   const [filterOpen,  setFilterOpen]  = useState(false);
   const [filters,     setFilters]     = useState({});
 
-  /* Sorting logic */
+  /* Filtering & Sorting logic */
   const sortedProducts = useMemo(() => {
     let list = [...initialProducts];
 
-    /* Apply filters (mock logic for now since data is flat) */
-    // In a real app, we would match list items with category/ideal-for etc.
-    if (filters["IDEAL FOR"]?.length > 0) {
-      if (!filters["IDEAL FOR"].includes("All")) {
-        // Mock filtering based on some simple mapping or just placeholder
-        // list = list.filter(p => filters["IDEAL FOR"].includes(someAttr))
-      }
+    /* Apply filters */
+    if (filters["IDEAL FOR"]?.length > 0 && !filters["IDEAL FOR"].includes("All")) {
+      list = list.filter((p) => {
+        const cat = p.category.toLowerCase();
+        const selected = filters["IDEAL FOR"].map(s => s.toLowerCase());
+        
+        if (selected.includes("men") && cat.includes("men's clothing")) return true;
+        if (selected.includes("women") && cat.includes("women's clothing")) return true;
+        if (selected.includes("baby & kids")) return false; // Not in fakestore
+        return false;
+      });
     }
 
     /* Sort results */
@@ -52,24 +56,26 @@ export default function ProductSection({ initialProducts }) {
       <div className={styles.toolbar}>
         <div className={styles.toolbarLeft}>
           <span className={styles.itemCount}>{sortedProducts.length} ITEMS</span>
-          
-          <button
-            className={styles.mobileFilterBtn}
-            onClick={() => setFilterOpen((v) => !v)}
-            aria-expanded={filterOpen}
-            aria-label={filterOpen ? "Hide filter sidebar" : "Show filter sidebar"}
-          >
-            {/* Simple arrow SVG */}
-            <svg 
-              width="10" height="10" viewBox="0 0 24 24" fill="none" 
-              stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-              style={{ transform: filterOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "0.2s" }}
-            >
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-            {filterOpen ? "HIDE FILTER" : "SHOW FILTER"}
-          </button>
         </div>
+
+        <button
+          className={styles.filterToggleBtn}
+          onClick={() => setFilterOpen((v) => !v)}
+          aria-expanded={filterOpen}
+          aria-label={filterOpen ? "Hide filter sidebar" : "Show filter sidebar"}
+        >
+          <svg 
+            width="16" height="16" viewBox="0 0 24 24" fill="none" 
+            stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+            className={styles.filterIcon}
+            style={{ transform: filterOpen ? "rotate(0deg)" : "rotate(180deg)" }}
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span className={styles.filterText}>
+            {filterOpen ? "HIDE FILTER" : "SHOW FILTER"}
+          </span>
+        </button>
 
         <div className={styles.toolbarRight}>
           {/* Sort dropdown */}
@@ -82,12 +88,12 @@ export default function ProductSection({ initialProducts }) {
               aria-label={`Sort by: ${currentSortLabel}`}
             >
               {currentSortLabel}
-              <svg
-                width="12" height="12" viewBox="0 0 12 12" fill="currentColor"
-                aria-hidden="true"
+              <svg 
+                width="14" height="14" viewBox="0 0 24 24" fill="none" 
+                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                 style={{ marginLeft: "4px", transform: sortOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "0.2s" }}
               >
-                <path d="M6 8L1 3h10L6 8z" />
+                <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </button>
 

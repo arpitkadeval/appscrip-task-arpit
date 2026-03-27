@@ -1,58 +1,42 @@
-/* ===========================================================
-   DESIGN TOKENS - Single source of truth for all colours,
-   spacing, shadows and typography used across the site.
-   =========================================================== */
 :root {
-  /* Brand colours */
-  --clr-accent:        #000000;        /* black - used for bars, borders */
-  --clr-accent-pink:   #eb4c6b;        /* rose-pink - announcement text, hearts */
-  --clr-accent-gold:   #f5a623;        /* amber - star ratings               */
+  --clr-accent:        #000000;
+  --clr-accent-pink:   #eb4c6b;
+  --clr-accent-gold:   #f5a623;
 
-  /* Text scale */
-  --clr-text-100: #111111;   /* headings / heavy text  */
-  --clr-text-200: #333333;   /* body text               */
-  --clr-text-300: #555555;   /* secondary text          */
-  --clr-text-400: #888888;   /* muted / meta text       */
-  --clr-text-500: #aaaaaa;   /* very muted / disabled   */
+  --clr-text-100: #111111;
+  --clr-text-200: #333333;
+  --clr-text-300: #555555;
+  --clr-text-400: #888888;
+  --clr-text-500: #aaaaaa;
 
-  /* Surfaces */
   --clr-bg:         #ffffff;
-  --clr-surface:    #f6f6f6;   /* card / image backgrounds */
-  --clr-surface-2:  #f0f0f0;   /* hover surfaces          */
-  --clr-border:     #e4e4e4;   /* dividers, card borders  */
+  --clr-surface:    #f6f6f6;
+  --clr-surface-2:  #f0f0f0;
+  --clr-border:     #e4e4e4;
 
-  /* Footer */
   --clr-footer-bg:     #1a1a1a;
   --clr-footer-border: #2e2e2e;
   --clr-footer-text:   #aaaaaa;
 
-  /* Typography */
   --font: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  /* Spacing */
-  --page-px:     28px;   /* page horizontal padding (desktop) */
-  --page-px-md:  20px;   /* page horizontal padding (tablet)  */
-  --page-px-sm:  16px;   /* page horizontal padding (mobile)  */
+  --page-px:     28px;
+  --page-px-md:  20px;
+  --page-px-sm:  16px;
 
-  /* Radii */
   --radius-xs: 2px;
   --radius-sm: 4px;
   --radius-md: 8px;
 
-  /* Shadows */
   --shadow-card:  0 2px 12px rgba(0, 0, 0, 0.06);
   --shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.10);
   --shadow-drop:  0 6px 20px rgba(0, 0, 0, 0.09);
 
-  /* Transitions */
   --t-fast:  0.15s ease;
   --t-base:  0.22s ease;
   --t-slow:  0.35s ease;
 }
 
-/* ===========================================================
-   GLOBAL RESET
-   =========================================================== */
 *,
 *::before,
 *::after {
@@ -97,18 +81,12 @@ a { color: inherit; }
 
 button { font-family: var(--font); cursor: pointer; }
 
-/* ===========================================================
-   FOCUS RING
-   =========================================================== */
 :focus-visible {
   outline: 2px solid var(--clr-accent);
   outline-offset: 3px;
 }
 :focus:not(:focus-visible) { outline: none; }
 
-/* ===========================================================
-   CUSTOM SCROLLBAR
-   =========================================================== */
 * {
   scrollbar-width: thin;
   scrollbar-color: #ccc transparent;

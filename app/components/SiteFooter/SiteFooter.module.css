@@ -1,235 +1,267 @@
-/* --- SiteFooter ------------------------------------------- */
-
 .footer {
-  background: var(--clr-footer-bg);
-  color: var(--clr-footer-text);
-  padding: 52px var(--page-px) 0;
+  background: #000;
+  color: #fff;
+  padding: 80px var(--page-px) 40px;
 }
 
-/* --- Upper row -------------------------------------------- */
 .upperRow {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  padding-bottom: 44px;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 80px;
+  padding-bottom: 60px;
 }
 
-/* --- Newsletter ------------------------------------------- */
 .newsletterCol {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .colHeading {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.10em;
+  letter-spacing: 0.12em;
   color: #fff;
   text-transform: uppercase;
-  margin: 0 0 6px;
+  margin: 0;
 }
 
 .colBody {
-  font-size: 12px;
-  color: var(--clr-footer-text);
-  line-height: 1.65;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.6;
   margin: 0;
 }
 
 .subscribeForm {
   display: flex;
-  border: 1px solid #444;
-  max-width: 380px;
+  gap: 16px;
+  max-width: 550px;
+  margin-top: 8px;
 }
 
 .emailInput {
   flex: 1;
   min-width: 0;
-  padding: 10px 14px;
-  background: transparent;
+  padding: 14px 16px;
+  background: #fff;
   border: none;
   outline: none;
-  color: #fff;
-  font-size: 12px;
+  color: #000;
+  font-size: 14px;
   font-family: var(--font);
 }
 
 .emailInput::placeholder {
-  color: #555;
+  color: #777;
 }
 
 .subscribeBtn {
-  padding: 10px 18px;
-  background: none;
-  border: none;
-  border-left: 1px solid #444;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.10em;
+  padding: 14px 44px;
+  background: #000;
+  border: 1px solid #fff;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   white-space: nowrap;
-  transition: background var(--t-fast);
+  transition: all var(--t-fast);
   cursor: pointer;
   font-family: var(--font);
+  text-transform: uppercase;
+  opacity: 0.7;
 }
 
 .subscribeBtn:hover {
-  background: #2e2e2e;
+  opacity: 1;
+  color: #fff;
 }
 
-/* --- Contact ---------------------------------------------- */
 .contactCol {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  justify-content: space-between;
+}
+
+.contactInfo {
+  margin-bottom: 24px;
 }
 
 .contactLine {
-  font-size: 12px;
-  color: var(--clr-footer-text);
-  margin: 0;
+  font-size: 14px;
+  color: #fff;
+  margin: 4px 0;
+}
+
+.currencySection {
+  display: flex;
+  flex-direction: column;
 }
 
 .currencyRow {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin: 4px 0;
-  font-size: 14px;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.flagIcon {
+  width: 24px;
+  height: 16px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #444;
+}
+
+.flagBlue {
+  flex: 1;
+  background: #002664;
+}
+
+.flagRed {
+  flex: 1;
+  background: #ffffff;
+  border-top: 1px solid #bd3d44;
+}
+
+.currencyPoint {
+  font-size: 10px;
+  color: #fff;
 }
 
 .currencyCode {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: #fff;
 }
 
 .currencyNote {
-  font-size: 10px;
-  color: #555;
+  font-size: 11px;
+  color: #fff;
   margin: 0;
-  line-height: 1.55;
-  max-width: 240px;
+  line-height: 1.5;
+  opacity: 0.8;
 }
 
-/* --- Divider ---------------------------------------------- */
 .divider {
   border: none;
-  border-top: 1px solid var(--clr-footer-border);
+  border-top: 1px solid #fff;
   margin: 0;
+  opacity: 0.3;
 }
 
-/* --- Lower desktop row ------------------------------------ */
 .lowerRow {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1.2fr;
   gap: 60px;
-  padding: 44px 0;
+  padding: 60px 0;
 }
 
 .lowerCol {
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
 .brandTitle {
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: #fff;
-  margin: 0 0 10px;
+  margin: 0 0 16px;
 }
 
 .colTitle {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.10em;
+  letter-spacing: 0.08em;
   color: #fff;
   text-transform: uppercase;
-  margin: 0 0 10px;
+  margin: 0 0 16px;
 }
 
-/* --- Link list -------------------------------------------- */
 .linkList {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .footerLink {
-  font-size: 12px;
-  color: var(--clr-footer-text);
+  font-size: 14px;
+  color: #fff;
   text-decoration: none;
-  transition: color var(--t-fast);
+  transition: opacity var(--t-fast);
+  opacity: 0.9;
 }
 
 .footerLink:hover {
-  color: #fff;
+  opacity: 1;
+  text-decoration: underline;
 }
 
-/* --- Social ----------------------------------------------- */
+.socialSection {
+  margin-bottom: 40px;
+}
+
 .socialRow {
   display: flex;
-  gap: 14px;
+  gap: 12px;
 }
 
-.socialLink {
-  color: var(--clr-footer-text);
-  line-height: 0;
-  transition: color var(--t-fast);
-}
-
-.socialLink:hover {
+.iconCircle {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
+  transition: background var(--t-fast), color var(--t-fast);
 }
 
-/* --- Payment chips ---------------------------------------- */
+.iconCircle:hover {
+  background: #fff;
+  color: #000;
+}
+
+.paymentSection {
+  display: flex;
+  flex-direction: column;
+}
+
 .paymentRow {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.paymentChip {
-  display: inline-flex;
+.paymentCard {
+  background: #fff;
+  border-radius: 4px;
+  padding: 6px 10px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 8px;
-  background: #2a2a2a;
-  border: 1px solid #3e3e3e;
-  border-radius: var(--radius-xs);
+  min-width: 56px;
+  height: 32px;
+}
+
+.cardBrand {
   font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #ccc;
-  white-space: nowrap;
+  font-weight: 800;
+  color: var(--accent, #000);
+  text-transform: uppercase;
 }
 
-/* --- Accessibility ---------------------------------------- */
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* --- Mobile accordions ------------------------------------ */
 .mobileAccordions {
   display: none;
 }
 
 .accordion {
-  border-top: 1px solid var(--clr-footer-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .accordionBtn {
@@ -239,35 +271,35 @@
   justify-content: space-between;
   background: none;
   border: none;
-  padding: 16px 0;
-  font-size: 12px;
+  padding: 24px 0;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: #fff;
+  text-transform: uppercase;
   text-align: left;
   cursor: pointer;
   font-family: var(--font);
 }
 
 .accordionBody {
-  padding-bottom: 18px;
+  padding-bottom: 24px;
 }
 
 .accChevronClosed {
   transform: rotate(-90deg);
   transition: transform var(--t-fast);
-  color: #777;
-  flex-shrink: 0;
+  color: #fff;
+  opacity: 0.6;
 }
 
 .accChevronOpen {
   transform: rotate(0deg);
   transition: transform var(--t-fast);
-  color: #777;
-  flex-shrink: 0;
+  color: #fff;
+  opacity: 1;
 }
 
-/* --- Copyright -------------------------------------------- */
 .copyright {
   border-top: 1px solid var(--clr-footer-border);
   padding: 18px 0;
@@ -279,8 +311,6 @@
   color: #555;
   margin: 0;
 }
-
-/* === RESPONSIVE =========================================== */
 
 @media (max-width: 768px) {
   .footer {

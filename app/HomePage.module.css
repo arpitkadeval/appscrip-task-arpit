@@ -1,10 +1,7 @@
-/* --- HomePage ----------------------------------------------- */
-
 .mainContent {
   min-height: 60vh;
 }
 
-/* --- Hero section ------------------------------------------ */
 .heroSection {
   text-align: center;
   padding: 52px var(--page-px) 36px;
@@ -12,8 +9,6 @@
   margin: 0 auto;
 }
 
-
-/* --- H1 ---------------------------------------------------- */
 .heroTitle {
   font-size: clamp(22px, 4.5vw, 38px);
   font-weight: 400;
@@ -24,7 +19,6 @@
   line-height: 1.12;
 }
 
-/* --- Subtitle ---------------------------------------------- */
 .heroDescription {
   font-size: 14px;
   line-height: 1.75;
@@ -33,7 +27,6 @@
   margin: 0 auto;
 }
 
-/* --- Responsive -------------------------------------------- */
 @media (max-width: 768px) {
   .heroSection {
     padding: 36px var(--page-px-sm) 28px;

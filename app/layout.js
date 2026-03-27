@@ -51,6 +51,8 @@ export const viewport = {
   initialScale: 1,
 };
 
+import { FavoriteProvider } from "./context/FavoriteContext";
+
 export default function RootLayout({ children }) {
   const schemaData = {
     "@context": "https://schema.org",
@@ -75,7 +77,11 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <FavoriteProvider>
+          {children}
+        </FavoriteProvider>
+      </body>
     </html>
   );
 }

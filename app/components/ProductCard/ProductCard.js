@@ -1,76 +1,84 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { Heart } from "lucide-react";
+import { useFavorites } from "@/app/context/FavoriteContext";
 import styles from "./ProductCard.module.css";
 
 export default function ProductCard({ product, priority = false }) {
-  const { title, image, category } = product;
-  const [wishlisted, setWishlisted] = useState(false);
+  const { id, title, image, category } = product;
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const wishlisted = isFavorite(id);
 
   /* Mock out of stock for demonstration (e.g. index % 3 == 0) */
-  // Actually, I'll check if the title contains a specific word or just static for now as a demo item
-  const isOutOfStock = title.toLowerCase().includes("jacket"); // example criteria
+  const isOutOfStock = title.toLowerCase().includes("jacket") && id % 2 === 0;
 
   return (
     <article className={styles.card}>
+      <Link href={`/product/${id}`} className={styles.cardLink} aria-label={`View details for ${title}`}>
+        {/* --- Image ------------------------------------------- */}
+        <div className={`${styles.imageBox} ${!imgLoaded ? styles.skeleton : ""}`}>
+          <Image
+            src={image}
+            alt={`${title} - Handcrafted ${category} | Metta Muse`}
+            fill
+            sizes="(max-width: 540px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className={`${styles.img} ${imgLoaded ? styles.imgVisible : ""}`}
+            style={{ objectFit: "contain" }}
+            priority={priority}
+            onLoad={() => setImgLoaded(true)}
+          />
 
-      {/* --- Image ------------------------------------------- */}
-      <div className={styles.imageBox}>
-        <Image
-          src={image}
-          alt={`${title} - ${category}`}
-          fill
-          sizes="(max-width: 540px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className={styles.img}
-          style={{ objectFit: "contain" }}
-          priority={priority}
-        />
+          {/* Hover Overlay */}
+          <div className={styles.hoverOverlay} />
 
-        {/* OUT OF STOCK overlay (if applicable) */}
-        {isOutOfStock && (
-          <div className={styles.outOfStockOverlay} aria-label="Out of stock">
-            OUT OF STOCK
-          </div>
-        )}
-      </div>
-
-      {/* --- Info -------------------------------------------- */}
-      <div className={styles.info}>
-        {/* Product Title - clamped to 1 line in some displays, 2 in others */}
-        <h2 className={styles.name}>{title}</h2>
-
-        {/* Action / Pricing logic as per screenshot */}
-        <p className={styles.pricingAction}>
-          <span>Sign in</span> or Create an account to see pricing
-        </p>
-
-        {/* Wishlist toggle at the bottom inline with price area if needed */}
-        <div className={styles.bottomRow}>
-          <button
-            className={styles.wishlistBtn}
-            onClick={(e) => {
-              e.preventDefault();
-              setWishlisted((v) => !v);
-            }}
-            aria-label={
-              wishlisted
-                ? `Remove ${title} from wishlist`
-                : `Add ${title} to wishlist`
-            }
-            aria-pressed={wishlisted}
-          >
-            <Heart
-              size={20}
-              strokeWidth={1.8}
-              fill={wishlisted ? "var(--clr-accent-pink)" : "none"}
-              stroke={wishlisted ? "var(--clr-accent-pink)" : "var(--clr-text-400)"}
-              aria-hidden="true"
-            />
-          </button>
+          {/* OUT OF STOCK overlay (if applicable) */}
+          {isOutOfStock && (
+            <div className={styles.outOfStockOverlay} aria-label="Out of stock">
+              OUT OF STOCK
+            </div>
+          )}
         </div>
-      </div>
+
+        {/* --- Info -------------------------------------------- */}
+        <div className={styles.info}>
+          <h3 className={styles.name}>{title}</h3>
+          
+         <div className={styles.pricingContainer}>
+           <p className={styles.pricingAction}>
+            <span className={styles.signInLink}>Sign in</span> or Create an account to see pricing
+          </p>
+
+          <div className={styles.bottomRow}>
+            <button
+              className={styles.wishlistBtn}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleFavorite(product);
+              }}
+              aria-label={
+                wishlisted
+                  ? `Remove ${title} from favorites`
+                  : `Add ${title} to favorites`
+              }
+              aria-pressed={wishlisted}
+            >
+              <Heart
+                size={22}
+                strokeWidth={wishlisted ? 0 : 1.5}
+                fill={wishlisted ? "#eb5757" : "none"}
+                stroke={wishlisted ? "#eb5757" : "#222"}
+                className={wishlisted ? styles.heartActive : ""}
+              />
+            </button>
+          </div>
+         </div>
+        </div>
+      </Link>
     </article>
   );
 }

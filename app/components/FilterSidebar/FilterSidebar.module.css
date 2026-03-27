@@ -1,12 +1,9 @@
-/* --- FilterSidebar ----------------------------------------- */
-
 .sidebar {
   width: 100%;
   border-right: 1px solid var(--clr-border);
   padding-right: 24px;
 }
 
-/* --- Customizable toggle ----------------------------------- */
 .customizableRow {
   display: flex;
   align-items: center;
@@ -24,7 +21,6 @@
   color: var(--clr-text-200);
 }
 
-/* --- Filter group ------------------------------------------ */
 .group {
   border-bottom: 1px solid var(--clr-border);
 }
@@ -67,7 +63,6 @@
   flex-shrink: 0;
 }
 
-/* --- Option list ------------------------------------------- */
 .optionList {
   list-style: none;
   margin: 0;
@@ -92,7 +87,6 @@
   color: var(--clr-text-100);
 }
 
-/* --- Custom checkbox --------------------------------------- */
 .checkWrap {
   position: relative;
   display: inline-flex;
@@ -118,7 +112,6 @@
   transition: background var(--t-fast), border-color var(--t-fast);
 }
 
-/* Checked state */
 .hiddenCheck:checked + .checkBox {
   background: var(--clr-text-100);
   border-color: var(--clr-text-100);
@@ -137,7 +130,6 @@
   transform: rotate(40deg);
 }
 
-/* Focus ring on checkbox */
 .hiddenCheck:focus-visible + .checkBox {
   outline: 2px solid var(--clr-text-100);
   outline-offset: 2px;

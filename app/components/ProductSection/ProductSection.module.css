@@ -1,57 +1,76 @@
-/* --- ProductSection ------------------------------------------ */
-
 .productSection {
   padding: 0 var(--page-px) 60px;
   max-width: 1440px;
   margin: 0 auto;
 }
 
-/* --- Toolbar ---------------------------------------------- */
 .toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 0 16px;
+  padding: 24px 0;
+  border-top: 1px solid var(--clr-border);
   border-bottom: 2px solid var(--clr-border);
   margin-bottom: 28px;
+  position: sticky;
+  top: 110px;
+  background: var(--clr-bg);
+  z-index: 100;
   gap: 12px;
 }
 
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  min-width: 150px;
+}
+
 .itemCount {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 800;
   letter-spacing: 0.05em;
   color: var(--clr-text-100);
   white-space: nowrap;
 }
 
-.toolbarRight {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.mobileFilterBtn {
+.filterToggleBtn {
   background: none;
   border: none;
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 0;
+  cursor: pointer;
+  color: var(--clr-text-400);
+  flex: 1;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+.filterIcon {
+  color: var(--clr-text-200);
+  transition: transform 0.2s ease;
+}
+
+.filterText {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--clr-text-200);
-  padding: 0;
-  cursor: pointer;
-  transition: color var(--t-fast);
   text-decoration: underline;
+  color: var(--clr-text-500);
 }
 
-.mobileFilterBtn:hover {
+.filterToggleBtn:hover .filterText {
   color: var(--clr-text-100);
 }
 
-/* --- Sort dropdown ---------------------------------------- */
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 150px;
+}
+
 .sortWrapper {
   position: relative;
 }
@@ -109,7 +128,6 @@
   color: var(--clr-text-100);
 }
 
-/* --- Main Layout: sidebar + grid --------------------------- */
 .mainLayout {
   display: flex;
   gap: 36px;
@@ -120,6 +138,11 @@
   display: block;
   width: 240px;
   flex-shrink: 0;
+  position: sticky;
+  top: 175px;
+  height: calc(100vh - 180px);
+  overflow-y: auto;
+  padding-right: 12px;
 }
 
 .sidebarHidden {
@@ -137,28 +160,19 @@
   gap: 36px 20px;
 }
 
-/* If sidebar hidden, grid should be 4 columns */
 .sidebarHidden + .gridWrapper .productGrid {
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* Handle desktop-only visibility logic if needed */
-
-/* === RESPONSIVE =========================================== */
-
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
   .productSection {
     padding: 0 var(--page-px-md) 48px;
   }
 
-  .productGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .productSection {
-    padding: 0 var(--page-px-sm) 48px;
+  .toolbar {
+    top: 45px;
+    padding: 16px 0;
+    margin-bottom: 20px;
   }
 
   .mainLayout {
@@ -181,7 +195,17 @@
   }
 
   .productGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 16px 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .itemCount {
+    display: none;
+  }
+  
+  .filterToggleBtn {
+    margin-left: 0;
   }
 }
