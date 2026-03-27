@@ -1,0 +1,130 @@
+/* --- ProductCard ------------------------------------------ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--t-base), box-shadow var(--t-base);
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+/* --- Image box ------------------------------------------ */
+.imageBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--clr-surface);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  transition: transform var(--t-slow) ease;
+}
+
+.card:hover .img {
+  transform: scale(1.05);
+}
+
+/* --- OUT OF STOCK overlay --------------------------------- */
+.outOfStockOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-text-100);
+  font-size: 14px;
+  font-weight: 700;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* --- Info panel ----------------------------------------- */
+.info {
+  padding: 12px 2px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--clr-text-100);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pricingAction {
+  font-size: 11px;
+  color: var(--clr-text-400);
+  margin: 4px 0 10px;
+  line-height: 1.4;
+}
+
+.pricingAction span {
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--clr-text-200);
+  font-weight: 600;
+}
+
+/* --- Bottom row: Wishlist toggle -------------------------- */
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.wishlistBtn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--clr-text-300);
+  transition: transform var(--t-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishlistBtn:hover {
+  transform: scale(1.1);
+  color: var(--clr-accent-pink);
+}
+
+.wishlistBtn:active {
+  transform: scale(0.92);
+}
+
+/* === RESPONSIVE =========================================== */
+
+@media (max-width: 480px) {
+  .name {
+    font-size: 13px;
+  }
+  .pricingAction {
+    font-size: 10px;
+  }
+}

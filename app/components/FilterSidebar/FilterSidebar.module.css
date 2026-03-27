@@ -1,0 +1,144 @@
+/* --- FilterSidebar ----------------------------------------- */
+
+.sidebar {
+  width: 100%;
+  border-right: 1px solid var(--clr-border);
+  padding-right: 24px;
+}
+
+/* --- Customizable toggle ----------------------------------- */
+.customizableRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0 14px;
+  border-bottom: 1px solid var(--clr-border);
+  cursor: pointer;
+  user-select: none;
+}
+
+.customizableLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--clr-text-200);
+}
+
+/* --- Filter group ------------------------------------------ */
+.group {
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.groupBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  padding: 13px 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--clr-text-200);
+  text-align: left;
+  transition: color var(--t-fast);
+}
+
+.groupBtn:hover {
+  color: var(--clr-text-100);
+}
+
+.groupLabel {
+  text-transform: uppercase;
+}
+
+.chevronClosed {
+  transition: transform var(--t-fast);
+  transform: rotate(-90deg);
+  color: var(--clr-text-400);
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transition: transform var(--t-fast);
+  transform: rotate(0deg);
+  color: var(--clr-text-400);
+  flex-shrink: 0;
+}
+
+/* --- Option list ------------------------------------------- */
+.optionList {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--clr-text-300);
+  user-select: none;
+  transition: color var(--t-fast);
+}
+
+.optionLabel:hover {
+  color: var(--clr-text-100);
+}
+
+/* --- Custom checkbox --------------------------------------- */
+.checkWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hiddenCheck {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkBox {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1.5px solid var(--clr-text-500);
+  background: var(--clr-bg);
+  position: relative;
+  flex-shrink: 0;
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+
+/* Checked state */
+.hiddenCheck:checked + .checkBox {
+  background: var(--clr-text-100);
+  border-color: var(--clr-text-100);
+}
+
+.hiddenCheck:checked + .checkBox::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(40deg);
+}
+
+/* Focus ring on checkbox */
+.hiddenCheck:focus-visible + .checkBox {
+  outline: 2px solid var(--clr-text-100);
+  outline-offset: 2px;
+}

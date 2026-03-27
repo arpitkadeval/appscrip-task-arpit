@@ -1,0 +1,321 @@
+/* --- SiteFooter ------------------------------------------- */
+
+.footer {
+  background: var(--clr-footer-bg);
+  color: var(--clr-footer-text);
+  padding: 52px var(--page-px) 0;
+}
+
+/* --- Upper row -------------------------------------------- */
+.upperRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 44px;
+}
+
+/* --- Newsletter ------------------------------------------- */
+.newsletterCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.colHeading {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+
+.colBody {
+  font-size: 12px;
+  color: var(--clr-footer-text);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.subscribeForm {
+  display: flex;
+  border: 1px solid #444;
+  max-width: 380px;
+}
+
+.emailInput {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 12px;
+  font-family: var(--font);
+}
+
+.emailInput::placeholder {
+  color: #555;
+}
+
+.subscribeBtn {
+  padding: 10px 18px;
+  background: none;
+  border: none;
+  border-left: 1px solid #444;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  white-space: nowrap;
+  transition: background var(--t-fast);
+  cursor: pointer;
+  font-family: var(--font);
+}
+
+.subscribeBtn:hover {
+  background: #2e2e2e;
+}
+
+/* --- Contact ---------------------------------------------- */
+.contactCol {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contactLine {
+  font-size: 12px;
+  color: var(--clr-footer-text);
+  margin: 0;
+}
+
+.currencyRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.currencyCode {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.currencyNote {
+  font-size: 10px;
+  color: #555;
+  margin: 0;
+  line-height: 1.55;
+  max-width: 240px;
+}
+
+/* --- Divider ---------------------------------------------- */
+.divider {
+  border: none;
+  border-top: 1px solid var(--clr-footer-border);
+  margin: 0;
+}
+
+/* --- Lower desktop row ------------------------------------ */
+.lowerRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 60px;
+  padding: 44px 0;
+}
+
+.lowerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.brandTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  margin: 0 0 10px;
+}
+
+.colTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+/* --- Link list -------------------------------------------- */
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footerLink {
+  font-size: 12px;
+  color: var(--clr-footer-text);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+
+.footerLink:hover {
+  color: #fff;
+}
+
+/* --- Social ----------------------------------------------- */
+.socialRow {
+  display: flex;
+  gap: 14px;
+}
+
+.socialLink {
+  color: var(--clr-footer-text);
+  line-height: 0;
+  transition: color var(--t-fast);
+}
+
+.socialLink:hover {
+  color: #fff;
+}
+
+/* --- Payment chips ---------------------------------------- */
+.paymentRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.paymentChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  background: #2a2a2a;
+  border: 1px solid #3e3e3e;
+  border-radius: var(--radius-xs);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #ccc;
+  white-space: nowrap;
+}
+
+/* --- Accessibility ---------------------------------------- */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* --- Mobile accordions ------------------------------------ */
+.mobileAccordions {
+  display: none;
+}
+
+.accordion {
+  border-top: 1px solid var(--clr-footer-border);
+}
+
+.accordionBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  padding: 16px 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+}
+
+.accordionBody {
+  padding-bottom: 18px;
+}
+
+.accChevronClosed {
+  transform: rotate(-90deg);
+  transition: transform var(--t-fast);
+  color: #777;
+  flex-shrink: 0;
+}
+
+.accChevronOpen {
+  transform: rotate(0deg);
+  transition: transform var(--t-fast);
+  color: #777;
+  flex-shrink: 0;
+}
+
+/* --- Copyright -------------------------------------------- */
+.copyright {
+  border-top: 1px solid var(--clr-footer-border);
+  padding: 18px 0;
+  text-align: center;
+}
+
+.copyright p {
+  font-size: 11px;
+  color: #555;
+  margin: 0;
+}
+
+/* === RESPONSIVE =========================================== */
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 36px var(--page-px-sm) 0;
+  }
+
+  .upperRow {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-bottom: 36px;
+  }
+
+  .subscribeForm {
+    max-width: 100%;
+  }
+
+  .lowerRow {
+    display: none;
+  }
+
+  .mobileAccordions {
+    display: block;
+    border-bottom: 1px solid var(--clr-footer-border);
+  }
+}
+
+@media (max-width: 480px) {
+  .subscribeForm {
+    flex-direction: column;
+  }
+
+  .subscribeBtn {
+    border-left: none;
+    border-top: 1px solid #444;
+    text-align: center;
+    padding: 12px;
+  }
+}

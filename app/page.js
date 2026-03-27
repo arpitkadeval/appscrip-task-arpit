@@ -1,66 +1,98 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import SiteHeader from "./components/SiteHeader/SiteHeader";
+import SiteFooter from "./components/SiteFooter/SiteFooter";
+import ProductSection from "./components/ProductSection/ProductSection";
+import styles from "./HomePage.module.css";
 
-export default function Home() {
+/**
+ * Fetch all products from the FakeStore API.
+ * This function runs on the SERVER (SSR) - Next.js App Router
+ * Server Components are async by default.
+ */
+async function fetchProducts() {
+  try {
+    const res = await fetch("https://fakestoreapi.com/products", {
+      // No cache - always fresh data from the server on each request (SSR)
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error(`FakeStore API responded with status ${res.status}`);
+    }
+
+    return await res.json();
+  } catch {
+    // Graceful fallback - the page still renders without products
+    return [];
+  }
+}
+
+export const metadata = {
+  title: "Discover Our Products | Metta Muse",
+  description:
+    "Shop our handpicked collection of premium handcrafted bags, accessories and lifestyle products. From recycled backpacks to artisan jewellery - find your next favourite at Metta Muse.",
+  alternates: {
+    canonical: "/",
+  },
+};
+
+export default async function HomePage() {
+  // SSR: products are fetched and rendered on the server before HTML is sent
+  const products = await fetchProducts();
+
+  /* JSON-LD structured data for the product listing page */
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Discover Our Products - Metta Muse",
+    description:
+      "Browse handcrafted bags, accessories and lifestyle products at Metta Muse.",
+    url: "https://appscrip-task-arpit.netlify.app/",
+    hasPart: products.slice(0, 6).map((p) => ({
+      "@type": "Product",
+      name: p.title,
+      description: p.description,
+      image: p.image,
+      offers: {
+        "@type": "Offer",
+        price: p.price,
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+      },
+      aggregateRating: p.rating
+        ? {
+          "@type": "AggregateRating",
+          ratingValue: p.rating.rate,
+          reviewCount: p.rating.count,
+        }
+        : undefined,
+    })),
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+
+      <SiteHeader />
+
+      <main className={styles.mainContent}>
+        {/* Hero / page intro */}
+        <div className={styles.heroSection}>
+
+          <h1 className={styles.heroTitle}>DISCOVER OUR PRODUCTS</h1>
+          <p className={styles.heroDescription}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet est
+            placerat rhoncus scelerisque nibh amet mi ut elementum dolor.
           </p>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        {/* Product listing with filter & sort */}
+        <ProductSection initialProducts={products} />
       </main>
-    </div>
+
+      <SiteFooter />
+    </>
   );
 }

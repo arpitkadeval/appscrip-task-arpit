@@ -1,0 +1,187 @@
+/* --- ProductSection ------------------------------------------ */
+
+.productSection {
+  padding: 0 var(--page-px) 60px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* --- Toolbar ---------------------------------------------- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0 16px;
+  border-bottom: 2px solid var(--clr-border);
+  margin-bottom: 28px;
+  gap: 12px;
+}
+
+.itemCount {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--clr-text-100);
+  white-space: nowrap;
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.mobileFilterBtn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--clr-text-200);
+  padding: 0;
+  cursor: pointer;
+  transition: color var(--t-fast);
+  text-decoration: underline;
+}
+
+.mobileFilterBtn:hover {
+  color: var(--clr-text-100);
+}
+
+/* --- Sort dropdown ---------------------------------------- */
+.sortWrapper {
+  position: relative;
+}
+
+.sortBtn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--clr-text-100);
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.sortDropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  min-width: 220px;
+  z-index: 100;
+  box-shadow: var(--shadow-drop);
+}
+
+.sortOption,
+.sortOptionActive {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--clr-text-200);
+  cursor: pointer;
+  transition: background var(--t-fast);
+  text-align: right;
+}
+
+.sortOption:hover {
+  background: var(--clr-surface);
+}
+
+.sortOptionActive {
+  font-weight: 700;
+  color: var(--clr-text-100);
+}
+
+/* --- Main Layout: sidebar + grid --------------------------- */
+.mainLayout {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+.sidebarVisible {
+  display: block;
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.sidebarHidden {
+  display: none;
+}
+
+.gridWrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px 20px;
+}
+
+/* If sidebar hidden, grid should be 4 columns */
+.sidebarHidden + .gridWrapper .productGrid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Handle desktop-only visibility logic if needed */
+
+/* === RESPONSIVE =========================================== */
+
+@media (max-width: 1024px) {
+  .productSection {
+    padding: 0 var(--page-px-md) 48px;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .productSection {
+    padding: 0 var(--page-px-sm) 48px;
+  }
+
+  .mainLayout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sidebarVisible {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: #fff;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 12px;
+  }
+}
